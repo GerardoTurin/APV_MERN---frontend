@@ -1,17 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react';  //Permite usar JSX y crear componentes
+import ReactDOM from 'react-dom/client';  //Permite renderizar componentes en el DOM
+//import './index.css';
+import App from './App.js';
+import * as bootstrap from 'bootstrap';  //Permite usar Bootstrap 5
+import 'bootstrap/dist/css/bootstrap.min.css';  //Permite usar Bootstrap
+import 'bootstrap-icons/font/bootstrap-icons.css';  //Permite usar Bootstrap Icons
+window.bootstrap = bootstrap;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+/* const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);
+); */
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <App />
+)  
+
