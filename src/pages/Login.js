@@ -67,7 +67,6 @@ const Login = () => {
       setPassword('')
 
     } catch (error) {
-      console.log(error)
 
       swal({
         title: error.response.data.msg,
