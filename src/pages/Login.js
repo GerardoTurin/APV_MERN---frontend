@@ -80,7 +80,7 @@ const Login = () => {
   return (
     <>
       <div className='mt-5 text-center'>
-        <h1 className='fw-bold fs-1'>Inicia Sesion y Administra tus <span className='text-primary'> Pacientes</span> </h1>
+        <h1 className='fw-bold fs-1'>Inicia Sesion y Administra tus <span className='text-primary'> Pacientes.</span> </h1>
       </div>
       <div className='shadow p-3 mb-5 bg-body rounded mt-4'>
         <form onSubmit={ handleSubmit }>
