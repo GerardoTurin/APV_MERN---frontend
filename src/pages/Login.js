@@ -92,11 +92,11 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
-            <div className="d-flex gap-2 align-content-center">
+            <div className="input-group">
               <input type={ mostarPassword ? 'text' : 'password' } className="form-control" id='password' value={ password } onChange={ evt => setPassword(evt.target.value) }></input>
-              <div onClick={ () => setMostarPassword(!mostarPassword) }>
+              <button className='btn btn-outline-secondary' type='button' onClick={ () => setMostarPassword(!mostarPassword) }>
                 { mostarPassword ? <i className="bi fs-5 bi-eye-fill"></i> : <i className="bi fs-5 bi-eye-slash-fill"></i> }
-              </div>
+              </button>
             </div>
           </div>
           <div className='d-grid d-lg-block'>

@@ -13,6 +13,9 @@ const NuevoPassword = () => {
   // desabilitar el boton al enviar el formulario
   const [btnDesabilitado, setBtnDesabilitado] = useState(false)
 
+  const [mostarPassword, setMostarPassword] = useState(false);
+  const [mostarRepitePassword, setMostarRepitePassword] = useState(false);
+
   const params = useParams()  // Obtenemos los parametros de la URL
   const { token } = params
 
@@ -116,11 +119,21 @@ const NuevoPassword = () => {
             <form onSubmit={ handleSubmit }>
               <div className="mb-3">
                 <label htmlFor="inputPassword1" className="form-label">Nuevo Password</label>
-                <input type="password" className="form-control" id="inputPassword1" value={ password } onChange={ evt => setPassword(evt.target.value) }></input>
+                <div className="input-group">
+                  <input type={ mostarPassword ? 'text' : 'password' } className="form-control" id="inputPassword1" value={ password } onChange={ evt => setPassword(evt.target.value) }></input>
+                  <button className='btn btn-outline-secondary' type='button' onClick={ () => setMostarPassword(!mostarPassword) }>
+                    { mostarPassword ? <i className="bi fs-5 bi-eye-fill"></i> : <i className="bi fs-5 bi-eye-slash-fill"></i> }
+                  </button>
+                </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="repitePassword" className="form-label">Repite tu nuevo Password</label>
-                <input type="password" className="form-control" id="repitePassword" value={ repitePassword } onChange={ evt => setRepetirPassword(evt.target.value) }></input>
+                <div className="input-group">
+                  <input type={ mostarRepitePassword ? 'text' : 'password' } className="form-control" id="repitePassword" value={ repitePassword } onChange={ evt => setRepetirPassword(evt.target.value) }></input>
+                  <button className='btn btn-outline-secondary' type='button' onClick={ () => setMostarRepitePassword(!mostarRepitePassword) }>
+                    { mostarRepitePassword ? <i className="bi fs-5 bi-eye-fill"></i> : <i className="bi fs-5 bi-eye-slash-fill"></i> }
+                  </button>
+                </div>
               </div>
               <div className='d-grid d-lg-block'>
                 <button type="submit" className="btn btn-primary pe-auto btn-lg" disabled={ btnDesabilitado } >Guardar Nuevo Password</button>

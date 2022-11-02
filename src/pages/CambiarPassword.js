@@ -51,30 +51,30 @@ const CambiarPassword = () => {
             <form className='row g-3 bg-body rounded my-4 border border-dark border-opacity-50 p-3' onSubmit={ handleSubmit }>
               <div className='my-3'>
                 <label htmlFor="pwd_actual" className="form-label text-uppercase fw-semibold">Password Actual</label>
-                <div className="d-flex gap-2 align-content-center">
+                <div className="input-group">
                   <input type={ mostarPasswordActual ? 'text' : 'password' } id='pwd_actual' className="form-control" name='pwd_actual' placeholder='Escribe tu password actual'
                     onChange={ evt => setPassword({
                       ...password,
                       [evt.target.name]: evt.target.value
                     }) }>
                   </input>
-                  <div onClick={ () => setMostarPasswordActual(!mostarPasswordActual) }>
+                  <button className='btn btn-outline-secondary' type='button' onClick={ () => setMostarPasswordActual(!mostarPasswordActual) }>
                     { mostarPasswordActual ? <i className="bi fs-5 bi-eye-fill"></i> : <i className="bi fs-5 bi-eye-slash-fill"></i> }
-                  </div>
+                  </button>
                 </div>
               </div>
               <div className='my-3'>
                 <label htmlFor="pwd_nuevo" className="form-label text-uppercase fw-semibold">Nuevo Password</label>
-                <div className="d-flex gap-2">
+                <div className="input-group">
                   <input type={ mostarPasswordNuevo ? 'text' : 'password' } id='pwd_nuevo' className="form-control" name='pwd_nuevo' placeholder='Escribe tu nuevo password'
                     onChange={ evt => setPassword({
                       ...password,
                       [evt.target.name]: evt.target.value
                     }) }>
                   </input>
-                  <div onClick={ () => setMostarPasswordNuevo(!mostarPasswordNuevo) }>
+                  <button className='btn btn-outline-secondary' type='button' onClick={ () => setMostarPasswordNuevo(!mostarPasswordNuevo) }>
                     { mostarPasswordNuevo ? <i className="bi fs-5 bi-eye-fill"></i> : <i className="bi fs-5 bi-eye-slash-fill"></i> }
-                  </div>
+                  </button>
                 </div>
               </div>
               <button type="submit" className="btn btn-primary pe-auto btn-lg text-uppercase">Actualizar Password</button>
