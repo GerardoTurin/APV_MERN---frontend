@@ -115,11 +115,6 @@ const PacientesProvider = ( {children} ) => {
             await clienteAxios.delete(`/pacientes/${id}`, config);
             const pacienteEliminado = pacientes.filter( pacienteState => pacienteState._id !== id );
             setPacientes(pacienteEliminado);
-            swal("Paciente Eliminado Correctamente", {
-              icon: "success",
-              buttons: false,
-              timer: 1500
-            });
           } catch (error) {
             console.log(error);
           }

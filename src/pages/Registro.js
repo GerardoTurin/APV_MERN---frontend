@@ -15,6 +15,8 @@ const Registro = () => {
   const [mostarPassword, setMostarPassword] = useState(false);
   const [mostarRepitePassword, setMostarRepitePassword] = useState(false);
 
+  const [cargando, setCargando] = useState(false)
+
 
   const handleSubmit = async (evt) => {
     evt.preventDefault() // Evita que se recargue la pagina
@@ -50,6 +52,10 @@ const Registro = () => {
       return
     }
 
+    // Mostrar el spinner de cargando antes de enviar la peticion
+    setCargando(true)
+
+
     // Crear el usuario en la base de datos (backend) API
     try {
       const { data } = await clienteAxios.post('/veterinario', { nombre, email, password })
@@ -62,6 +68,7 @@ const Registro = () => {
         button: false,
         timer: 3000
     })
+    setCargando(false)
 
     // Resetear el formulario
     setNombre('')
@@ -115,7 +122,10 @@ const Registro = () => {
             </div>
           </div>
           <div className='d-grid d-lg-block'>
-            <button type="submit" className="btn btn-primary pe-auto btn-lg">Crear Cuenta</button>
+            <button type="submit" className="btn btn-primary pe-auto btn-lg">{ cargando ? <div className="spinner-border text-white" role="status">
+              <span className="visually-hidden"></span>
+              </div> : 'Crear Cuenta' }
+            </button>
           </div>
         </form>
 

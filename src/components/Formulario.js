@@ -10,6 +10,7 @@ const Formulario = () => {
   const [fecha, setFecha] = useState('')
   const [sintomas, setSintomas] = useState('')
   const [id, setId] = useState(null)
+  
 
   const { guardarPaciente, paciente } = usePacientes();
 

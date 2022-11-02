@@ -17,16 +17,9 @@ const ConfirmaCuenta = () => {
     const confirmaCuenta = async () => {
       try {
         const url = `${process.env.REACT_APP_BACKEND_URL}/api/veterinario/confirmar/${token}`
-        const { data } = await clienteAxios.get(url)
+        await clienteAxios.get(url)
 
         setCuentaConfirmada(true)
-        swal({
-          title: data.msg,
-          text: "Ahora puedes iniciar sesion",
-          icon: "success",
-          button: false,
-          timer: 4000
-        })  // Mostrar mensaje de confirmacion
 
       } catch (error) {
         swal({

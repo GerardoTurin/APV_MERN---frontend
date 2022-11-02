@@ -9,6 +9,7 @@ const Login = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [mostarPassword, setMostarPassword] = useState(false);
+  const [cargando, setCargando] = useState(false)
 
   const { setAuth } = useAuth(); // Extraemos el estado de auth del hook
 
@@ -50,10 +51,14 @@ const Login = () => {
       return
     }
 
+    // Mostrar el spinner de cargando antes de enviar la peticion
+    setCargando(true)
+
 
     // Enviar los datos al backend
     try {
       const { data } = await clienteAxios.post('/auth/login', { email, password })
+      setCargando(false)
 
       // Guardar el token en el localStorage
       localStorage.setItem('token', data.token)
@@ -100,7 +105,10 @@ const Login = () => {
             </div>
           </div>
           <div className='d-grid d-lg-block'>
-            <button type="submit" className="btn btn-primary pe-auto btn-lg">Iniciar Sesión</button>
+            <button type="submit" className="btn btn-primary pe-auto btn-lg">{ cargando ? <div className="spinner-border text-white" role="status">
+              <span className="visually-hidden"></span>
+              </div> : 'Iniciar Sesión' }
+            </button>
           </div>
         </form>
         <nav className='navbar mt-2 d-flex justify-content-between gap-2'>
