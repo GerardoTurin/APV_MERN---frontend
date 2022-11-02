@@ -16,6 +16,8 @@ const CambiarPassword = () => {
   const [mostarPasswordActual, setMostarPasswordActual] = useState(false);
   const [mostarPasswordNuevo, setMostarPasswordNuevo] = useState(false);
 
+  const [cargando, setCargando] = useState(false)
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
@@ -31,8 +33,13 @@ const CambiarPassword = () => {
       return;
     }
     
+
+    // Mostrar el spinner de cargando antes de enviar la peticion
+    setCargando(true)
+
     // Actualizar el password
     await actualizarPassword(password);
+    setCargando(false)
     
     // Limpiar el formulario
     evt.target.reset();
@@ -77,7 +84,10 @@ const CambiarPassword = () => {
                   </button>
                 </div>
               </div>
-              <button type="submit" className="btn btn-primary pe-auto btn-lg text-uppercase">Actualizar Password</button>
+              <button type="submit" className="btn btn-primary pe-auto btn-lg text-uppercase">{ cargando ? <div className="spinner-border text-white" role="status">
+                <span className="visually-hidden"></span>
+                </div> : 'Actualizar Password' }
+              </button>
           </form>
         </div>
       </div>

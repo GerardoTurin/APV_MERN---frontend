@@ -63,7 +63,7 @@ const OlvidaPassword = () => {
         </div>
         <div className='d-grid d-lg-block'>
           <button type="submit" className="btn btn-primary pe-auto btn-lg">{ cargando ? <div className="spinner-border text-white" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden"></span>
         </div> : 'Enviar Datos' }</button>
         </div>
       </form>

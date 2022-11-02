@@ -9,6 +9,7 @@ const EditarPerfil = () => {
 
   const { auth, actualizarPerfil } = useAuth();
   const [perfil, setPerfil] = useState({});
+  const [cargando, setCargando] = useState(false)
 
   useEffect(() => {
     setPerfil(auth.veterinario);
@@ -24,7 +25,11 @@ const EditarPerfil = () => {
       return swal('Error', 'Email y Nombre son obligatorios', 'error');
     }
 
+    // Mostrar el spinner de cargando antes de enviar la peticion
+    setCargando(true)
+
     await actualizarPerfil(perfil);
+    setCargando(false)
 
   }
 
@@ -79,7 +84,10 @@ const EditarPerfil = () => {
                     })}>
                 </input>
               </div>
-              <button type="submit" className="btn btn-primary pe-auto btn-lg text-uppercase">Guardar Cambios</button>
+              <button type="submit" className="btn btn-primary pe-auto btn-lg text-uppercase">{ cargando ? <div className="spinner-border text-white" role="status">
+                <span className="visually-hidden"></span>
+                </div> : 'Guardar Cambios' }
+              </button>
           </form>
         </div>
       </div>
