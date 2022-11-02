@@ -11,10 +11,11 @@ const NuevoPassword = () => {
   const [ tokenValido, setTokenValido ] = useState(false)
   const [passwordModificado, setPasswordModificado] = useState(false)
   // desabilitar el boton al enviar el formulario
-  const [btnDesabilitado, setBtnDesabilitado] = useState(false)
+  //const [btnDesabilitado, setBtnDesabilitado] = useState(false)
 
   const [mostarPassword, setMostarPassword] = useState(false);
   const [mostarRepitePassword, setMostarRepitePassword] = useState(false);
+
 
   const params = useParams()  // Obtenemos los parametros de la URL
   const { token } = params
@@ -24,9 +25,6 @@ const NuevoPassword = () => {
     const verificarToken = async () => {
       try {
         await clienteAxios(`/veterinario/olvide/${token}`)
-        swal({
-          title: 'Coloca tu nueva contraseña'
-        })
         setTokenValido(true)
       } catch (error) {
 
@@ -74,16 +72,17 @@ const NuevoPassword = () => {
       return
     }
 
+
+    
     // Actualizar el password en la base de datos (backend) API
     try {
       const { data } = await clienteAxios.post(`/veterinario/olvide/${token}`, { password })
-      console.log(data)
 
       swal({
         title: data.msg,
-        icon: "info",
+        icon: "success",
         button: false,
-        timer: 3000
+        timer: 2000
       })
       setPasswordModificado(true)
 
@@ -102,7 +101,7 @@ const NuevoPassword = () => {
     setRepetirPassword('')
 
     // Desabilitar el boton
-    setBtnDesabilitado(true)
+    //setBtnDesabilitado(true)
 
   }
 
@@ -136,7 +135,7 @@ const NuevoPassword = () => {
                 </div>
               </div>
               <div className='d-grid d-lg-block'>
-                <button type="submit" className="btn btn-primary pe-auto btn-lg" disabled={ btnDesabilitado } >Guardar Nuevo Password</button>
+                { passwordModificado ? <button type="submit" className="btn btn-primary pe-auto btn-lg d-none">Guardar Nuevo Password</button> : <button type="submit" className="btn btn-primary pe-auto btn-lg">Guardar Nuevo Password</button> }
               </div>
             </form>
           </>

@@ -7,6 +7,8 @@ const OlvidaPassword = () => {
 
   const [ email, setEmail ] = useState('')
 
+  const [cargando, setCargando] = useState(false)  // Estado para saber si se esta cargando la pagina o no
+
   const handleSubmit = async (evt) => {
     evt.preventDefault() // Evita que se recargue la pagina
 
@@ -19,6 +21,10 @@ const OlvidaPassword = () => {
       return
     }
 
+    // Mostrar el spinner de cargando antes de enviar la peticion
+    setCargando(true)
+    
+    // Enviar el email al backend
     try {
       const { data } = await clienteAxios.post('/veterinario/olvide', { email })
       swal({
@@ -26,6 +32,7 @@ const OlvidaPassword = () => {
         icon: "success",
         button: "Aceptar",
       })
+      setCargando(false)
     } catch (error) {
       swal({
         title: error.response.data.msg,
@@ -33,6 +40,10 @@ const OlvidaPassword = () => {
         button: "Aceptar",
       });
     }
+
+    // Ocultar el spinner de cargando despues de enviar la peticion
+
+
 
     // Limpiar el formulario
     setEmail('')
@@ -51,7 +62,9 @@ const OlvidaPassword = () => {
           <input type="email" className="form-control" value={ email } onChange={ evt => setEmail( evt.target.value ) }></input>
         </div>
         <div className='d-grid d-lg-block'>
-          <button type="submit" className="btn btn-primary pe-auto btn-lg">Enviar Datos</button>
+          <button type="submit" className="btn btn-primary pe-auto btn-lg">{ cargando ? <div className="spinner-border text-white" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div> : 'Enviar Datos' }</button>
         </div>
       </form>
       <nav className='navbar navbar-expand-lg mt-2 d-flex justify-content-between'>
