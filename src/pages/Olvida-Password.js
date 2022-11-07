@@ -34,6 +34,7 @@ const OlvidaPassword = () => {
       })
       setCargando(false)
     } catch (error) {
+      setCargando(false)
       swal({
         title: error.response.data.msg,
         icon: "error",

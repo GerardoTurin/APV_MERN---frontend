@@ -59,26 +59,26 @@ const Login = () => {
     try {
       const { data } = await clienteAxios.post('/auth/login', { email, password })
       setCargando(false)
-
+      
       // Guardar el token en el localStorage
       localStorage.setItem('token', data.token)
       setAuth(data)
-
+      
       // Redireccionar al usuario a la pagina principal
       navigate('/admin')
 
       // Limpiar los campos
       setEmail('')
       setPassword('')
-
+      
     } catch (error) {
-
       swal({
         title: error.response.data.msg,
         icon: "error",
         button: false,
         timer: 3000
       })
+      setCargando(false)
     }
   }
 

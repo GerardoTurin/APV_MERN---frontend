@@ -69,15 +69,16 @@ const Registro = () => {
         timer: 3000
     })
     setCargando(false)
-
+    
     // Resetear el formulario
     setNombre('')
     setEmail('')
     setPassword('')
     setRepetirPassword('')
-
-    } catch (error) {
-      // Mostrar la alerta
+    
+  } catch (error) {
+      setCargando(false)
+      
       swal({
         title: "Error al registrar el usuario",
         text: error.response.data.errors[0].msg,
